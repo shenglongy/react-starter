@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const paths = require("./paths");
 const { stringified } = require("./env");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: paths.appEntry,
@@ -20,6 +21,37 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.(?:ico|png|jpe?g|gif)$/i,
+        type: "asset",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          "@svgr/webpack",
+          {
+            loader: "url-loader",
+            options: {
+              limit: 2048,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -27,6 +59,7 @@ module.exports = {
       template: paths.appHtml,
     }),
     new webpack.DefinePlugin(stringified),
+    new MiniCssExtractPlugin(),
   ],
   output: {
     filename: "[name].bundle.js",

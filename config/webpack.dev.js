@@ -5,6 +5,7 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 module.exports = merge(common, {
   mode: "development",
   devtool: "source-map",
+  target: "web",
   devServer: {
     open: true,
     port: 3000,
