@@ -23,8 +23,8 @@ const raw = Object.keys(process.env)
     },
     {
       NODE_ENV: process.env.NODE_ENV || "development",
-      PACKAGE_BUILD_TIME: new Date().toUTCString()
-    }
+      PACKAGE_BUILD_TIME: new Date().toUTCString(),
+    },
   );
 
 const stringified = {

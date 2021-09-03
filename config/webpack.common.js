@@ -1,8 +1,12 @@
 const webpack = require("webpack");
 const paths = require("./paths");
-const { stringified } = require("./env");
+const { raw, stringified } = require("./env");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+const isDevelopment = raw.NODE_ENV === "development";
+const isProduction = raw.NODE_ENV === "production";
 
 module.exports = {
   entry: paths.appEntry,
@@ -11,6 +15,26 @@ module.exports = {
       "@": paths.appSrc,
     },
     extensions: [".js", ".ts", ".jsx", ".tsx"],
+  },
+  output: {
+    path: paths.appBuild,
+    clean: true,
+  },
+  optimization: {
+    minimize: isProduction,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: true,
+          mangle: true,
+        },
+        extractComments: false,
+        parallel: true,
+      }),
+    ],
+    splitChunks: {
+      chunks: "all",
+    },
   },
   module: {
     rules: [
@@ -24,9 +48,7 @@ module.exports = {
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
+          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
           "sass-loader",
@@ -35,6 +57,9 @@ module.exports = {
       {
         test: /\.(?:ico|png|jpe?g|gif)$/i,
         type: "asset",
+        generator: {
+          filename: "static/media/[name].[hash:8].[ext]",
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -47,7 +72,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              limit: 2048,
+              name: "static/media/[name].[hash:8].[ext]",
             },
           },
         ],
@@ -59,11 +84,5 @@ module.exports = {
       template: paths.appHtml,
     }),
     new webpack.DefinePlugin(stringified),
-    new MiniCssExtractPlugin(),
   ],
-  output: {
-    filename: "[name].bundle.js",
-    path: paths.appBuild,
-    clean: true,
-  },
 };

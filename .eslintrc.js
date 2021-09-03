@@ -28,5 +28,6 @@ module.exports = {
     react: {
       version: "detect",
     },
+    "import/resolver": ["node", "typescript"],
   },
 };

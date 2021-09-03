@@ -4,15 +4,17 @@ const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "source-map",
+  devtool: "cheap-module-source-map",
   target: "web",
+  output: {
+    filename: "static/js/[name].js",
+    chunkFilename: "static/js/[name].chunk.js",
+  },
   devServer: {
     open: true,
     port: 3000,
     hot: true,
     historyApiFallback: true,
   },
-  plugins: [
-    new ReactRefreshWebpackPlugin(),
-  ],
+  plugins: [new ReactRefreshWebpackPlugin()],
 });
