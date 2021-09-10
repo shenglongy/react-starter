@@ -82,6 +82,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: paths.appHtml,
+      favicon: `${paths.appSrc}/assets/svg/logo.svg`,
     }),
     new webpack.DefinePlugin(stringified),
   ],
