@@ -80,10 +80,32 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: paths.appHtml,
-      favicon: `${paths.appSrc}/assets/svg/logo.svg`,
-    }),
+    new HtmlWebpackPlugin(
+      Object.assign(
+        {},
+        {
+          template: paths.appHtml,
+          favicon: `${paths.appSrc}/assets/svg/logo.svg`,
+          inject: "body",
+        },
+        isProduction
+          ? {
+              minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              },
+            }
+          : undefined,
+      ),
+    ),
     new webpack.DefinePlugin(stringified),
   ],
 };
