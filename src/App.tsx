@@ -1,10 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
+import routes from "./routes";
+import RoutesSwitch from "./components/RoutesSwitch";
 
 const App: FC = () => {
   return (
-    <div>
-      <h1>Hello world!</h1>
-    </div>
+    <BrowserRouter>
+      <Suspense fallback={<div />}>
+        <RoutesSwitch routes={routes} />
+      </Suspense>
+    </BrowserRouter>
   );
 };
 
