@@ -1,5 +1,6 @@
-import { RootState } from "@/store/index";
 import { createSlice } from "@reduxjs/toolkit";
+
+import { RootState } from "@/store/index";
 
 interface SystemState {
   status: AsyncStatus;
