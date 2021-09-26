@@ -1,6 +1,8 @@
 const fs = require("fs");
-const paths = require("./paths");
+
 const dotEnv = require("dotenv");
+
+const paths = require("./paths");
 
 const RUN_MODE = process.env.MODE || process.env.NODE_ENV;
 

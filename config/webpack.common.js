@@ -1,9 +1,10 @@
-const webpack = require("webpack");
-const paths = require("./paths");
-const { raw, stringified } = require("./env");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const webpack = require("webpack");
+
+const { raw, stringified } = require("./env");
+const paths = require("./paths");
 
 const isDevelopment = raw.NODE_ENV === "development";
 const isProduction = raw.NODE_ENV === "production";
