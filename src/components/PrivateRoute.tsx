@@ -1,6 +1,8 @@
 import React, { FC } from "react";
+
 import { useSelector } from "react-redux";
 import { Route, RouteProps, Redirect } from "react-router-dom";
+
 import { RootState } from "@/store";
 
 interface PrivateRouteProps extends RouteProps {

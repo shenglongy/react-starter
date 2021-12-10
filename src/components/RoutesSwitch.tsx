@@ -1,9 +1,12 @@
 import React, { FC } from "react";
-import { SwitchProps, Switch, Route } from "react-router-dom";
+
 import { useSelector } from "react-redux";
-import { isLoggedIn } from "@/store/system/systemSlice";
+import { SwitchProps, Switch, Route } from "react-router-dom";
+
 import PrivateRoute from "./PrivateRoute";
+
 import { RouteConfig } from "@/routes/types";
+import { isLoggedIn } from "@/store/system/systemSlice";
 
 interface RoutesSwitchProps extends SwitchProps {
   routes?: RouteConfig[];
