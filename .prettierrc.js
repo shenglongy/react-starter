@@ -5,4 +5,5 @@ module.exports = {
   trailingComma: "all",
   jsxBracketSameLine: true,
   singleQuote: false,
+  tailwindConfig: "./tailwind.config.js",
 };
