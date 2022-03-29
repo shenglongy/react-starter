@@ -2,8 +2,8 @@ import React, { FC, Suspense } from "react";
 
 import { BrowserRouter } from "react-router-dom";
 
-import RoutesSwitch from "./components/RoutesSwitch";
 import routes from "./routes";
+import RoutesSwitch from "./routes/RoutesSwitch";
 
 const App: FC = () => {
   return (
