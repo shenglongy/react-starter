@@ -59,7 +59,7 @@ module.exports = {
         test: /\.(?:ico|png|jpe?g|gif)$/i,
         type: "asset",
         generator: {
-          filename: "static/media/[name].[hash:8].[ext]",
+          filename: "static/media/[name].[hash:8][ext]",
         },
       },
       {
@@ -68,12 +68,15 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: [
-          "@svgr/webpack",
+        oneOf: [
           {
-            loader: "url-loader",
-            options: {
-              name: "static/media/[name].[hash:8].[ext]",
+            dependency: { not: ["url"] },
+            use: ["@svgr/webpack", "new-url-loader"],
+          },
+          {
+            type: "asset/resource",
+            generator: {
+              filename: "static/media/[name].[hash:8][ext]",
             },
           },
         ],

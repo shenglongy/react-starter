@@ -1,4 +1,3 @@
 {
-  "*.{js,jsx,ts,tsx}": "eslint",
-  "*.{scss,css}": "stylelint"
+  "*.{js,jsx,ts,tsx}": "eslint"
 }
