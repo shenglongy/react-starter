@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { merge } = require("webpack-merge");
+const WebpackBar = require("webpackbar");
 
 const common = require("./webpack.common.js");
 
@@ -12,6 +13,7 @@ module.exports = merge(common, {
     chunkFilename: "static/js/[name].[contenthash:8].chunk.js",
   },
   plugins: [
+    new WebpackBar(),
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash:8].css",
       chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
