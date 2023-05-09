@@ -16,6 +16,12 @@ module.exports = merge(common, {
     port: 3000,
     hot: true,
     historyApiFallback: true,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
   },
   plugins: [new ReactRefreshWebpackPlugin()],
 });
