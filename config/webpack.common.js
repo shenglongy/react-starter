@@ -18,6 +18,7 @@ module.exports = {
     extensions: [".js", ".ts", ".jsx", ".tsx"],
   },
   output: {
+    publicPath: paths.publicPath,
     path: paths.appBuild,
     clean: true,
   },

@@ -10,4 +10,5 @@ module.exports = {
   appEntry: resolveApp("src/main.tsx"),
   appHtml: resolveApp("public/index.html"),
   appBuild: resolveApp("build"),
+  publicPath: "/",
 };
